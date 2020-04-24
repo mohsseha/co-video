@@ -7,7 +7,10 @@
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [cljsjs/hls "0.12.2-0"] 
 	       	[org.clojure/clojurescript "1.10.597"]
+                 [compojure "1.6.1"]
+                 [http-kit "2.3.0"]
                  [reagent "0.10.0"]]
+  :main ai.husain.main
 
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-figwheel "0.5.19"]]

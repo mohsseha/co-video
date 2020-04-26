@@ -10,36 +10,22 @@
 
 (def state
   (r/atom
-   {:url          "http://localhost:3449/vids/300.m3u8"
+   {:url          "/vids/300.m3u8"
     :play?        true
     :ctl?         true
     :full-screen? false
     :hidden?      true
-    ; can you even see the video
-    :time-seconds 757}))
+    :time-seconds 757.322}))
 
-(declare debug mount-video)
+(add-watch state :logger #(-> %4 clj->js js/console.log))
+
+
+(declare mount-video)
 
 (defn videoEl [] (.getElementById js/document "video"))
 
 (defonce hls (new js/Hls))
 
-(defn home-page []
-  [:div
-   [:h2 "Welcome to Husain.ai Co-vid service "]
-   ;   [:li "about"]
-   ;   [:li "blog"]
-   ;   [:li "youtube"]
-   [:li
-    [:input
-     {:type     "button"
-      :value    "join-theater"
-      :on-click (fn [] (swap! state assoc :hidden? false)
-                  (mount-video))}]]
-   [:li [:input {:type "button" :value (pr-str @state)}]]
-   [:br]
-   [:video#video
-    {:hidden (:hidden? @state) :height "100%" :width "100%" :controls (:ctl? @state) :src ""}]])
 
 
 ; derived from https://github.com/alkerway/hls-cljs/blob/master/src/hls_cljs/core.cljs :
@@ -84,17 +70,43 @@
 ;; -------------------------
 ;; Initialize app
 
+(defn home-page []
+  [:div
+   [:h2 "Welcome to Husain.ai Co-vid service "]
+   [:li (pr-str @state)]
+   [:li
+    [:input
+     {:type     "button"
+      :value    "join-theater"
+      :on-click (fn [] (swap! state assoc :hidden? false)
+                  (mount-video))}]]
+   [:video#video
+    {:hidden   (:hidden? @state)
+     :height   "100%"
+     :width    "100%"
+     :controls (:ctl? @state)
+     :src      ""}]])
+
+
 (defn mount-root []
   (d/render [home-page] (.getElementById js/document "app")))
 
 (defn mount-video []
   (d/render [video-player] (.getElementById js/document "video")))
 
+(defn mount-blog []] ( comment not implemented yet
+  [ : div
+  [ : h2 "Welcome to Husain.ai Co-vid service "]
+  [ : li "about"]
+  [ : li "blog"]
+  [ : li "youtube"]])
+
+)
 
 (defn init! []
   (let [url-str (clojure.string/lower-case js/window.location.pathname)]
-    (if (clojure.string/includes? url-str "v.html")
-      (mount-root)
+    (if (clojure.string/includes? url-str "blog.html")
+      (mount-blog)
       (mount-root))))
 
 

@@ -5,12 +5,13 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.10.1"]
-                 [cljsjs/hls "0.12.2-0"] 
+                 [cljsjs/hls "0.12.2-0"]
 	       	[org.clojure/clojurescript "1.10.597"]
                  [compojure "1.6.1"]
                  [http-kit "2.3.0"]
+                 [cljs-http "0.1.46"]
                  [reagent "0.10.0"]]
-  :main ai.husain.main
+  :main ai.husain.webserver
 
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-figwheel "0.5.19"]]
@@ -40,7 +41,9 @@
                          :pretty-print  true}
                         :figwheel
                         {:on-jsload "ai.husain.core/mount-root"
-                         :open-urls ["http://localhost:3449/index.html"]}}
+;                         :open-urls ["http://localhost:3449/index.html"]}}
+                         :open-urls ["http://localhost/index.html"]}}
+
                        :release
                        {:source-paths ["src" "env/prod/cljs"]
                         :compiler

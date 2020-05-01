@@ -1,6 +1,8 @@
 FROM clojure
-COPY . /workdir
+RUN mkdir /workdir
+COPY project.clj /workdir
 WORKDIR /workdir
-lein package
-lein run
-CMD ["lein", "figwheel"]
+RUN lein deps
+COPY . /workdir
+RUN lein package
+CMD ["lein", "run"]

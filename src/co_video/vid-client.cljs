@@ -1,4 +1,4 @@
-(ns ai.husain.vid-client
+(ns co-video.vid-client
   (:require-macros [cljs.core.async.macros :refer [go]])
   (:require
     [cljs-http.client :as http]

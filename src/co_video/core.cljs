@@ -1,10 +1,10 @@
-(ns ai.husain.core
+(ns co-video.core
   (:require
     [reagent.core :as r]
     [reagent.dom :as d]
-    [ai.husain.blog :as blog]
-    [ai.husain.vid-client :as vid-client]
-    [ai.husain.vid-master :as vid-master]
+    [co-video.blog :as blog]
+    [co-video.vid-client :as vid-client]
+    [co-video.vid-master :as vid-master]
     [clojure.string]))
 
 (def uuid-regexp #"[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")

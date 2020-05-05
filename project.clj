@@ -1,17 +1,16 @@
-(defproject ai.husain "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject co-video "0.1.0-SNAPSHOT"
+  :description "Co-Video a util to share HLS video streams across the internet and keep them in  sync" 
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [cljsjs/hls "0.12.2-0"]
-	       	[org.clojure/clojurescript "1.10.597"]
+	       	 [org.clojure/clojurescript "1.10.597"]
                  [compojure "1.6.1"]
                  [http-kit "2.3.0"]
                  [cljs-http "0.1.46"]
                  [reagent "0.10.0"]]
-  :main ai.husain.webserver
+  :main co-video.webserver
 
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-figwheel "0.5.19"]]
@@ -32,7 +31,7 @@
   :cljsbuild {:builds {:app
                        {:source-paths ["src" "env/dev/cljs"]
                         :compiler
-                        {:main "ai.husain.dev"
+                        {:main "co-video.dev"
                          :output-to "public/js/app.js"
                          :output-dir "public/js/out"
                          :asset-path   "js/out"
@@ -40,7 +39,7 @@
                          :optimizations :none
                          :pretty-print  true}
                         :figwheel
-                        {:on-jsload "ai.husain.core/mount-root"
+                        {:on-jsload "co-video.core/mount-root"
 ;                         :open-urls ["http://localhost:3449/index.html"]}}
                          :open-urls ["http://localhost/index.html"]}}
 

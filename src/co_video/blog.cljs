@@ -1,4 +1,4 @@
-(ns ai.husain.blog
+(ns co-video.blog
   (:require
     [reagent.core :as r]
     [reagent.dom :as d]

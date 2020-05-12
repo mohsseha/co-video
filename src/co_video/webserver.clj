@@ -1,6 +1,6 @@
 (ns co-video.webserver
     (:require [compojure.core :refer :all]
-              [clj-http.lite.client :as client]
+              [clj-http.client :as client]
               [compojure.route :as route]
               [clojure.spec.alpha :as s]
               [ring.middleware.cors :refer [wrap-cors]]

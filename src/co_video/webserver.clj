@@ -10,7 +10,7 @@
 (def db (atom {}))
 
 ; hack to allow this server to proxy a data store like s3 or gs
-(def data-store-url (clojure.string/replace (slurp "data-store-url") "\n" ""))
+(def data-store-url (clojure.string/replace (slurp "config/data-store-url") "\n" ""))
 
 (add-watch db :watcher-log
            (fn [key atom old-state new-state]

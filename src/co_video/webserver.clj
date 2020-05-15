@@ -3,14 +3,16 @@
               [clj-http.client :as client]
               [compojure.route :as route]
               [clojure.spec.alpha :as s]
+              [clj-gcloud.storage :as gs]
               [ring.middleware.cors :refer [wrap-cors]]
               [org.httpkit.server :refer [run-server]]))
+
 ; half a DB in two statements:)
 (def db (atom {}))
 
 ; hack to allow this server to proxy a data store like s3 or gs
-(def data-store-url (clojure.string/replace (slurp "config/data-store-url") "\n" ""))
-(def gs-client gs/init {})
+(def gs-prefix (clojure.string/replace (slurp "config/gs-prefix") "\n" ""))
+(def gs-client (gs/init {}))
 
 (add-watch db :watcher-log
            (fn [key atom old-state new-state]
@@ -57,12 +59,11 @@
      :body    (get @db uuid)}))
 
 (defn get-gs-file [filename]
-    (let [url (str gs-prefix "/" filename)
-          blob (->> url st/->blob-id (st/get-blob client ))
-          stream (->> blob read-channel ->input-stream )] 
-        (println (str "pulling file" url " from gs bucket"))
-        stream
-))
+  (let [url    (str gs-prefix "/" filename)
+        blob   (->> url gs/->blob-id (gs/get-blob gs-client))
+        stream (->> blob gs/read-channel gs/->input-stream)]
+    (println (str "pulling file" url " from gs bucket"))
+    stream))
 
 (defn get-file [filename]
   (let [url (str data-store-url filename)]

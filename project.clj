@@ -7,7 +7,7 @@
 
   :dependencies [[org.clojure/clojure "1.10.1"]
                  [clj-http "3.10.1"]
-;                 [clj-http-lite "0.3.0"]
+                 [com.oscaro/clj-gcloud-storage "0.71-1.2"]
                  [cljsjs/hls "0.12.2-0"]
                  [org.clojure/clojurescript "1.10.597"]
                  [compojure "1.6.1"]

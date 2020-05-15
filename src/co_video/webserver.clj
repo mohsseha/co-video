@@ -65,10 +65,10 @@
     (println (str "pulling file" url " from gs bucket"))
     stream))
 
-(defn get-file [filename]
-  (let [url (str data-store-url filename)]
-    (println (str "pulling in the file:" filename "\t fetching url: " url))
-    (client/get url {:as :stream :throw-exceptions false})))
+;(defn get-file [filename]
+;  (let [url (str data-store-url filename)]
+;    (println (str "pulling in the file:" filename "\t fetching url: " url))
+;    (client/get url {:as :stream :throw-exceptions false})))
 
 (defroutes my-blog
   (GET "/state/:uuid" [uuid]

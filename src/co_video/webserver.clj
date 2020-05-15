@@ -77,7 +77,7 @@
        (str (get @db uuid {:error true})))
   (GET "/vid/:a{.*}"
        [a]
-       (get-file a))
+       (get-gs-file a))
 
   (POST "/update-state" [req] update-state-n-log)
 

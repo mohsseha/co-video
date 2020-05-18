@@ -60,15 +60,14 @@
 
 (defn get-gs-file [filename]
   (let [url    (str gs-prefix "/" filename)
-        blob   (->> url gs/->blob-id (gs/get-blob gs-client))
-        stream (->> blob gs/read-channel gs/->input-stream)]
-    (println (str "pulling file" url " from gs bucket"))
-    stream))
+        blob   (->> url gs/->blob-id (gs/get-blob gs-client))]
+    (println (str "pulling file \"" url "\" from gs bucket"))
+    (->> blob gs/read-channel gs/->input-stream)))
 
-;(defn get-file [filename]
-;  (let [url (str data-store-url filename)]
-;    (println (str "pulling in the file:" filename "\t fetching url: " url))
-;    (client/get url {:as :stream :throw-exceptions false})))
+(defn get-file [filename]
+  (let [url (str "/home/vids/" filename)]
+    (println (str "pulling in the file:" filename "\t fetching url: " url))
+    (client/get url {:as :stream :throw-exceptions false})))
 
 (defroutes my-blog
   (GET "/state/:uuid" [uuid]
@@ -76,6 +75,9 @@
        (println (str "=" (get @db uuid {:error true})))
        (str (get @db uuid {:error true})))
   (GET "/vid/:a{.*}"
+       [a]
+       (get-file a))
+  (GET "/gs/:a{.*}"
        [a]
        (get-gs-file a))
 

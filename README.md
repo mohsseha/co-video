@@ -12,6 +12,8 @@ Once you have your video files and application deployed (say for eg to `my-serve
 `my-server.com?master`
 and supplying the video name. A URL will be generated that you can share with others and once they join they will be seeing the same video at the same location. 
 
+### Deployment with bucket backends 
+Although you can directly copy the videos to the container there is support for Google Storage by using the `/gs/` prefix on the movie url.  
 
 ## What if I want to build on this tool? 
 This is a very simple react/reagent application with a very small webserver thrown in to host the shared state and video files.  

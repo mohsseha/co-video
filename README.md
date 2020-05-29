@@ -52,3 +52,6 @@ you need to install ffmpeg and run:
 ```bash 
  ffmpeg -i input.m4v -c:v libx264 -crf 21 -preset veryfast -c:a aac -b:a 128k -ac 2 -f hls -hls_time 12 -hls_playlist_type event output.m3u8
 ``` 
+
+
+you want to keep your configs in `config` folder

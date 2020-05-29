@@ -8,7 +8,7 @@
 
 (defn home-page[]
   [:div
-   [:h2 "Welcome to" [:div {:color "#FF0000"} "Husain.ai"] "blog"]
+   [:h2 "Welcome to" [:div {:color "#FF0000"} "my"] "blog"]
    [:li "about"]
    [:li "blog"]
    [:li "youtube"]])
